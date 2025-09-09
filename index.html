@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Formulário</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .container {
+      background: #fff;
+      padding: 50px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      width: 320px;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+    label {
+      font-weight: bold;
+      display: block;
+      margin: 10px 0 5px;
+    }
+    input, select, button {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+    button {
+      background: #25d366;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background: #1ebe5b;
+    }
+    span{
+      font-size: 10px;
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Qual a sua disponibilidade?</h2>
+    <h5>Desde já agradecemos a sua oferta de vida. <br>Deus te abençoe, Shalom! </h5>
+    <form id="formDisponibilidade">
+      <label for="nome">Nome:</label>
+      <input type="text" id="nome" required>
+
+      <label for="telefone">Telefone:</label>
+      <input type="tel" id="telefone" placeholder="(DDD) 9xxxx-xxxx" required>
+
+      <label for="data">Data:</label>
+      <span>(Lembrando que será do dia 10 a 23 de setembro.)</span>
+      <input type="date" id="data" required>
+
+      <label for="periodo">Período:</label>
+      <select id="periodo" required>
+        <option value="">Selecione...</option>
+        <option value="Manhã">Manhã</option>
+        <option value="Tarde">Tarde</option>
+        <option value="Noite">Noite</option>
+        <option value="Dia todo">Dia todo</option>
+      </select>
+
+      <button type="submit">Enviar para WhatsApp</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById("formDisponibilidade").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const nome = document.getElementById("nome").value;
+      const telefone = document.getElementById("telefone").value;
+      const data = document.getElementById("data").value;
+      const periodo = document.getElementById("periodo").value;
+
+      const numeroDestino = "5581997724885";
+
+      const mensagem = `Olá! Seguem os dados da disponibilidade do irmão(a):%0A
+       Nome: ${nome}%0A
+       Telefone: ${telefone}%0A
+       Data: ${data}%0A
+       Período: ${periodo}`;
+
+      const url = `https://wa.me/${numeroDestino}?text=${mensagem}`;
+      window.open(url, "_blank");
+    });
+  </script>
+</body>
+</html>
